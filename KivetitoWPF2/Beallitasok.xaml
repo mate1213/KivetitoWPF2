@@ -1,0 +1,60 @@
+﻿<Window x:Class="KivetitoWPF2.Beallitasok"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KivetitoWPF2"
+        mc:Ignorable="d"
+        Title="Beallitasok"
+        Height="225"
+        MinHeight="225"
+        MaxHeight="450"
+        Width="400"
+        MinWidth="400"
+        MaxWidth="800">
+    <Grid >
+
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition x:Name="ColumnDefinition_Menu"
+                              Width="100">
+            </ColumnDefinition>
+
+            <ColumnDefinition x:Name="ColumnDefinition_GridSplitter"
+                              Width="4">
+            </ColumnDefinition>
+            
+            <ColumnDefinition x:Name="ColumnDefinition_Beallitasok"/>
+
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="Grid_Beallitasok"
+              Background="Red"
+              Margin="-1"
+              Grid.Column="2"/>
+
+        <Grid x:Name="Grid_Menu"
+              Background="Red"
+              Grid.Column="0">
+            <Button Height="20"
+                    Width="95"
+                    Content="Színek"
+                    Margin="2.5,10,2.5,164">
+                
+            </Button>
+        </Grid>
+
+
+
+        <GridSplitter x:Name="GridSplitter_Column1"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Stretch"
+                      Background="Black"
+                      ShowsPreview="True"
+                      Width="4"
+                      IsEnabled="False"
+                      Grid.Column="1"/>
+
+    </Grid>
+    
+</Window>

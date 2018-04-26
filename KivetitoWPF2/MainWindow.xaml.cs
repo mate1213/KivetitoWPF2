@@ -21,80 +21,79 @@ namespace KivetitoWPF2
     /// </summary>
     public partial class MainWindow : Window
     {
+        DefaultBeallitasok defaultBeallitasok;
+        Beallitasok beallitasok;
+        SzinekBeallitasa szinekBeallitasa;
+
         public MainWindow()
         {
             InitializeComponent();
-            Brush defaultBackGround1 = Brushes.LightBlue;
-            Brush defaultBackGround2 = Brushes.LightCoral;
-            Brush defaultBackGround3 = Brushes.LightCyan;
-            Brush defaultBackGround4 = Brushes.LightGoldenrodYellow;
-            //Default settings 
-            Grid_Menu.Background = Grid_DalokKezeloFelulet.Background = Grid_DalokEszkoz.Background = defaultBackGround1;
-
+            //Default settings
+            defaultBeallitasok = new DefaultBeallitasok();
+            szinekBeallitasa = new SzinekBeallitasa();
+            beallitasok = new Beallitasok(
+                defaultBeallitasok.DefaulBorderColor,
+                defaultBeallitasok.DefaultButtonColor,
+                defaultBeallitasok.DefaultBackGround1,
+                defaultBeallitasok.DefaultBackGround2,
+                defaultBeallitasok.DefaultBackGround3,
+                defaultBeallitasok.DefaultBackGround4,
+                this);
+            szinekBeallitasa.HatterBeallitasa(ref Grid_Menu, ref Grid_DalokKezeloFelulet, ref Grid_DalokEszkoz, defaultBeallitasok.DefaultBackGround1);
         }
+
 
         private void Btn_Dalok_Click(object sender, RoutedEventArgs e)
         {
             TabControl_KezeloFelulet.SelectedIndex = 0;
             TabControl_Eszkozok.SelectedIndex = 0;
 
-            Brush temp = Brushes.Red;
-            BorderSetter(Btn_Dalok, 3, temp);
-            BorderSetterDefault(Btn_Igek);
-            BorderSetterDefault(Btn_Kepek);
-            BorderSetterDefault(Btn_Videok);
+            szinekBeallitasa.KeretAllitas(ref Btn_Dalok, ref Btn_Igek, ref Btn_Kepek, ref Btn_Videok, ref Btn_Beallitasok, 3, defaultBeallitasok.DefaulBorderColor);
+            szinekBeallitasa.HatterBeallitasa(ref Grid_Menu, ref Grid_DalokKezeloFelulet, ref Grid_DalokEszkoz, defaultBeallitasok.DefaultBackGround1);
         }
 
         private void Btn_Igek_Click(object sender, RoutedEventArgs e)
         {
             TabControl_KezeloFelulet.SelectedIndex = 1;
             TabControl_Eszkozok.SelectedIndex = 1;
-
-            Brush temp = Brushes.Red;
-            BorderSetterDefault(Btn_Dalok);
-            BorderSetter(Btn_Igek, 3, temp);
-            BorderSetterDefault(Btn_Kepek);
-            BorderSetterDefault(Btn_Videok);
+            
+            szinekBeallitasa.KeretAllitas(ref Btn_Igek, ref Btn_Dalok, ref Btn_Kepek, ref Btn_Videok, ref Btn_Beallitasok, 3, defaultBeallitasok.DefaulBorderColor);
+            szinekBeallitasa.HatterBeallitasa(ref Grid_Menu, ref Grid_IgekKezeloFelulet, ref Grid_IgekEszkoz, defaultBeallitasok.DefaultBackGround2);
         }
 
         private void Btn_Kepek_Click(object sender, RoutedEventArgs e)
         {
             TabControl_KezeloFelulet.SelectedIndex = 2;
             TabControl_Eszkozok.SelectedIndex = 2;
-
-            Brush temp = Brushes.Red;
-            BorderSetterDefault(Btn_Dalok);
-            BorderSetterDefault(Btn_Igek);
-            BorderSetter(Btn_Kepek, 3, temp);
-            BorderSetterDefault(Btn_Videok);
+            
+            szinekBeallitasa.KeretAllitas(ref Btn_Kepek, ref Btn_Dalok, ref Btn_Igek, ref Btn_Videok, ref Btn_Beallitasok, 3, defaultBeallitasok.DefaulBorderColor);
+            szinekBeallitasa.HatterBeallitasa(ref Grid_Menu, ref Grid_KepekKezeloFelulet, ref Grid_KepekEszkoz, defaultBeallitasok.DefaultBackGround3);
         }
 
         private void Btn_Videok_Click(object sender, RoutedEventArgs e)
         {
             TabControl_KezeloFelulet.SelectedIndex = 3;
             TabControl_Eszkozok.SelectedIndex = 3;
-
-            Brush temp = Brushes.Red;
-            BorderSetterDefault(Btn_Dalok);
-            BorderSetterDefault(Btn_Igek);
-            BorderSetterDefault(Btn_Kepek);
-            BorderSetter(Btn_Videok, 3, temp);
+            
+            szinekBeallitasa.KeretAllitas(ref Btn_Videok, ref Btn_Dalok, ref Btn_Igek, ref Btn_Kepek, ref Btn_Beallitasok, 3, defaultBeallitasok.DefaulBorderColor);
+            szinekBeallitasa.HatterBeallitasa(ref Grid_Menu, ref Grid_VideokKezeloFelulet, ref Grid_VideoEszkoz, defaultBeallitasok.DefaultBackGround4);
         }
 
         private void Btn_Beallitasok_Click(object sender, RoutedEventArgs e)
         {
-            Beallitasok beallitasok = new Beallitasok();
+            szinekBeallitasa.KeretAllitas(ref Btn_Beallitasok, ref Btn_Dalok, ref Btn_Igek, ref Btn_Kepek, ref Btn_Videok, 3, defaultBeallitasok.DefaulBorderColor);
             beallitasok.Show();
         }
 
-        private void Tb_Verstol_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        //TODO: Kiemelni külön Class-ba (BeviteliSzabalyok.cs)
+        private void CsakSzam_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             TextBox tb = sender as TextBox;
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void Tb_Verstol_TextChanged(object sender, TextChangedEventArgs e)
+        private void MaxErtek_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox tb = sender as TextBox;
             int inttemp;
@@ -120,41 +119,11 @@ namespace KivetitoWPF2
         private void TextBox_Keres_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox tb = sender as TextBox;
-            tb.Text = string.Empty;
-            tb.Foreground = Brushes.Black;
-        }
-
-
-
-        private void BorderSetterDefault(Button btn)
-        {
-            try
+            if (tb.Text == "Itt kereshetsz a dalok között.")
             {
-                btn.ClearValue(BorderBrushProperty);
-                btn.BorderThickness = new Thickness(1);
+                tb.Text = string.Empty;
+                tb.Foreground = Brushes.Black;
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.ToString(), "Hiba");
-            }
-        }
-
-        private void BorderSetter(Button btn, int bordertickness, Brush brushes)
-        {
-            try
-            {
-                btn.BorderBrush = (dynamic)brushes;
-                btn.BorderThickness = new Thickness(bordertickness);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.ToString(), "Hiba");
-            }
-        }
-
-        private void ListBox_Eredmeny_DragOver(object sender, DragEventArgs e)
-        {
-
         }
     }
 }

@@ -12,6 +12,7 @@
         Width="400"
         MinWidth="400"
         MaxWidth="800">
+
     <Grid >
 
         <Grid.ColumnDefinitions>
@@ -23,28 +24,131 @@
             <ColumnDefinition x:Name="ColumnDefinition_GridSplitter"
                               Width="4">
             </ColumnDefinition>
-            
+
             <ColumnDefinition x:Name="ColumnDefinition_Beallitasok"/>
 
         </Grid.ColumnDefinitions>
 
         <Grid x:Name="Grid_Beallitasok"
-              Background="Red"
               Margin="-1"
-              Grid.Column="2"/>
+              Grid.Column="2">
+
+            <Button x:Name="Button_SzinKeret"
+                    Margin="116,10,0,0"
+                    Style="{StaticResource MyButtonStyle}"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Click="Button_Szin_Click" 
+                    Height="18"
+                    Width="70"/>
+
+            <Button x:Name="Button_SzinGomb"
+                    Margin="116,33,0,0"
+                    Style="{StaticResource MyButtonStyle}"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Click="Button_Szin_Click" 
+                    Height="18"
+                    Width="70"/>
+
+            <Button x:Name="Button_SzinHatterDalok"
+                    Margin="116,56,0,0"
+                    Style="{StaticResource MyButtonStyle}"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Click="Button_Szin_Click" 
+                    Height="18"
+                    Width="70"/>
+            
+            <Button x:Name="Button_SzinHatterIgek"
+                    Margin="116,79,0,0"
+                    Style="{StaticResource MyButtonStyle}"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Click="Button_Szin_Click" 
+                    Height="18"
+                    Width="70"/>
+
+            <Button x:Name="Button_SzinHatterKepek"
+                    Margin="116,102,0,0"
+                    Style="{StaticResource MyButtonStyle}"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Click="Button_Szin_Click" 
+                    Height="18"
+                    Width="70"/>
+
+            <Button x:Name="Button_SzinHatterVideok"
+                    Margin="116,125,0,0"
+                    Style="{StaticResource MyButtonStyle}"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Click="Button_Szin_Click" 
+                    Height="18"
+                    Width="70"/>
+
+            <TextBlock x:Name="TextBlock_SzinKeret"
+                       Margin="10,10,179,0"
+                       Height="18"
+                       TextWrapping="Wrap"
+                       Text="Keret"
+                       VerticalAlignment="Top"/>
+
+            <TextBlock x:Name="TextBlock_SzinGomb"
+                       Height="18"
+                       Margin="10,33,179,0"
+                       TextWrapping="Wrap"
+                       Text="Gomb"
+                       VerticalAlignment="Top"/>
+
+            <TextBlock x:Name="TextBlock_SzinHatterDalok"
+                       Height="18"
+                       Margin="10,56,179,0"
+                       TextWrapping="Wrap"
+                       Text="Dalok Háttér"
+                       VerticalAlignment="Top"/>
+
+            <TextBlock x:Name="TextBlock_SzinHatterIgek"
+                       Height="18"
+                       Margin="10,79,179,0"
+                       TextWrapping="Wrap"
+                       Text="Igék Háttér"
+                       VerticalAlignment="Top"/>
+
+            <TextBlock x:Name="TextBlock_SzinHatterKepek"
+                       Height="18"
+                       Margin="10,102,179,0"
+                       TextWrapping="Wrap"
+                       Text="Képek Háttér"
+                       VerticalAlignment="Top"/>
+
+            <TextBlock x:Name="TextBlock_SzinHatterVideok"
+                       Height="18"
+                       Margin="10,125,179,0"
+                       TextWrapping="Wrap"
+                       Text="Videók Háttér"
+                       VerticalAlignment="Top"/>
+            
+            <Button x:Name="Button_Mentes"
+                    Content="Mentés"
+                    HorizontalAlignment="Left"
+                    Margin="205,166,0,0"
+                    VerticalAlignment="Top"
+                    Width="75" Click="Button_Mentes_Click"/>
+
+        </Grid>
 
         <Grid x:Name="Grid_Menu"
-              Background="Red"
               Grid.Column="0">
+
             <Button Height="20"
                     Width="95"
                     Content="Színek"
-                    Margin="2.5,10,2.5,164">
-                
+                    Margin="2,10,2,0"
+                    VerticalAlignment="Top">
             </Button>
+
         </Grid>
-
-
 
         <GridSplitter x:Name="GridSplitter_Column1"
                       HorizontalAlignment="Center"
@@ -56,5 +160,5 @@
                       Grid.Column="1"/>
 
     </Grid>
-    
+
 </Window>
